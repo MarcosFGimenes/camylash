@@ -120,6 +120,7 @@ const Admin = () => {
                     <th className="px-6 py-3 text-left text-sm font-medium">Horário</th>
                     <th className="px-6 py-3 text-left text-sm font-medium">Nome</th>
                     <th className="px-6 py-3 text-left text-sm font-medium">Telefone</th>
+                    <th className="px-6 py-3 text-left text-sm font-medium">Observação</th>
                     <th className="px-6 py-3 text-center text-sm font-medium">Ações</th>
                   </tr>
                 </thead>
@@ -130,6 +131,9 @@ const Admin = () => {
                       <td className="px-6 py-4 whitespace-nowrap">{agendamento.horario}</td>
                       <td className="px-6 py-4 whitespace-nowrap">{agendamento.cliente.nome}</td>
                       <td className="px-6 py-4 whitespace-nowrap">{agendamento.cliente.telefone}</td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {agendamento.cliente.observacao || "Sem observações"}
+                      </td>
                       <td className="px-6 py-4 whitespace-nowrap flex justify-center space-x-2">
                         <button
                           className="bg-green-600 text-white text-sm px-4 py-2 rounded hover:bg-green-700"

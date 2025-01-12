@@ -35,38 +35,6 @@ router.post('/admin/horarios-padrao', async (req, res) => {
   }
 });
 
-// Rota para buscar horários padrão
-router.get('/admin/horarios-padrao', async (req, res) => {
-  try {
-    const horariosPadrao = await HorarioPadrao.findOne();
-    if (!horariosPadrao) {
-      return res.status(404).json({ message: 'Nenhum horário padrão encontrado' });
-    }
-    res.json(horariosPadrao);
-  } catch (error) {
-    console.error('Erro ao buscar horários padrão:', error);
-    res.status(500).json({ error: 'Erro ao buscar horários padrão' });
-  }
-});
-
-// Rota para cadastrar ou atualizar horários padrão
-router.post('/admin/horarios-padrao', async (req, res) => {
-  const { horarios } = req.body;
-  try {
-    let horariosPadrao = await HorarioPadrao.findOne();
-    if (horariosPadrao) {
-      horariosPadrao.horarios = horarios;
-    } else {
-      horariosPadrao = new HorarioPadrao({ horarios });
-    }
-    await horariosPadrao.save();
-    res.json({ message: 'Horários padrão salvos com sucesso!', horariosPadrao });
-  } catch (error) {
-    console.error('Erro ao salvar horários padrão:', error);
-    res.status(500).json({ error: 'Erro ao salvar horários padrão.' });
-  }
-});
-
 // Rota para buscar horários disponíveis
 router.get('/horarios-disponiveis', async (req, res) => {
   const { data } = req.query;
