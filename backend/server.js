@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 
 // Conexão com o MongoDB
 mongoose.connect(
-  'mongodb+srv://marcosgimenes:<sua-senha>@camylash.br4fc.mongodb.net/?retryWrites=true&w=majority',
+  'mongodb+srv://marcosgimenes:xUC6n9jPOXUXaSh5@camylash.br4fc.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
