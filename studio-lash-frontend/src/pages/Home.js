@@ -13,7 +13,7 @@ const Home = () => {
       {/* Hero Section */}
       <header className="bg-gradient-to-r from-purple-700 to-purple-500 text-white py-20 text-center">
         <h1 className="text-6xl font-extrabold tracking-wide">
-          Bem-vinda ao <span className="text-black">Camily Lash Studio</span>
+          Bem-vinda ao <span className="text-black">Lash Studio</span>
         </h1>
         <p className="mt-6 text-lg font-light">
           Onde elegância e beleza se encontram. Descubra o poder de um olhar.
@@ -37,10 +37,10 @@ const Home = () => {
           </div>
           <div className="lg:w-1/2 text-center lg:text-left">
             <h2 className="text-4xl font-extrabold text-purple-700">
-              Sobre Camily Gimenes
+              Sobre [Seu nome]
             </h2>
             <p className="mt-4 text-gray-700 text-lg">
-              Camily Gimenes é uma especialista em realçar a beleza natural das
+              [Seu nome aqui] é uma especialista em realçar a beleza natural das
               mulheres, com uma experiência de mais de 5 anos em lash design e
               estética facial. Com um olhar atento e dedicação, ela transforma
               cada atendimento em uma experiência única e inesquecível.
@@ -103,7 +103,7 @@ const Home = () => {
           <div className="bg-gray-100 shadow-lg rounded-lg p-6">
             <p className="text-gray-600">
               "Adorei o atendimento e o resultado dos meus cílios. Ficaram
-              perfeitos e super naturais! Obrigada, Camily!"
+              perfeitos e super naturais! Obrigada!"
             </p>
             <p className="text-purple-700 font-bold mt-4">- Fernanda Lima</p>
           </div>
@@ -120,7 +120,7 @@ const Home = () => {
       {/* Call to Action */}
       <footer className="bg-gradient-to-r from-purple-700 to-purple-500 text-white py-16 text-center">
         <h2 className="text-4xl font-extrabold">
-          Agende Seu Horário no Camily Lash Studio
+          Agende Seu Horário no Lash Studio
         </h2>
         <p className="mt-4 text-lg">
           Dê o primeiro passo para realçar sua beleza. Estamos esperando por
