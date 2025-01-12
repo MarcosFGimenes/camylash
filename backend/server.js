@@ -26,5 +26,5 @@ app.use('/api', agendamentoRoutes);
 
 // Iniciar o servidor
 app.listen(3000, () => {
-  console.log('Servidor rodando em http://localhost:3000');
+  console.log('Servidor rodando em https://camylash-production.up.railway.app');
 });
