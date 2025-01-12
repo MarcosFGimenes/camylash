@@ -4,7 +4,7 @@ const Agendamento = require('../models/Agendamento');
 const HorarioPadrao = require('../models/HorariosPadrao');
 
 // Rota para buscar horários padrão
-router.get('/admin/horarios-padrao', async (req, res) => {
+router.get('/api/admin/horarios-padrao', async (req, res) => {
   try {
     const horariosPadrao = await HorarioPadrao.findOne();
     if (!horariosPadrao) {
@@ -18,7 +18,7 @@ router.get('/admin/horarios-padrao', async (req, res) => {
 });
 
 // Rota para cadastrar ou atualizar horários padrão
-router.post('/admin/horarios-padrao', async (req, res) => {
+router.post('/api/admin/horarios-padrao', async (req, res) => {
   const { horarios } = req.body;
   try {
     let horariosPadrao = await HorarioPadrao.findOne();
@@ -36,7 +36,7 @@ router.post('/admin/horarios-padrao', async (req, res) => {
 });
 
 // Rota para buscar horários disponíveis
-router.get('/horarios-disponiveis', async (req, res) => {
+router.get('/api/horarios-disponiveis', async (req, res) => {
   const { data } = req.query;
   try {
     const horariosPadrao = await HorarioPadrao.findOne();
@@ -58,7 +58,7 @@ router.get('/horarios-disponiveis', async (req, res) => {
 });
 
 // Rota para agendar horário
-router.post('/agendar', async (req, res) => {
+router.post('/api/agendar', async (req, res) => {
   const { data, horario, cliente } = req.body;
 
   try {
@@ -77,7 +77,7 @@ router.post('/agendar', async (req, res) => {
 });
 
 // Rota para listar todos os agendamentos
-router.get('/admin/agendamentos', async (req, res) => {
+router.get('/api/admin/agendamentos', async (req, res) => {
   try {
     const agendamentos = await Agendamento.find({ status: 'pendente' }).sort('data horario');
     res.json(agendamentos);
@@ -88,7 +88,7 @@ router.get('/admin/agendamentos', async (req, res) => {
 });
 
 // Rota para cancelar agendamento
-router.delete('/admin/agendamento/:id', async (req, res) => {
+router.delete('/api/admin/agendamento/:id', async (req, res) => {
   try {
     const agendamento = await Agendamento.findByIdAndDelete(req.params.id);
     if (!agendamento) {
@@ -102,7 +102,7 @@ router.delete('/admin/agendamento/:id', async (req, res) => {
 });
 
 // Rota para marcar como concluído
-router.put('/admin/agendamento/:id', async (req, res) => {
+router.put('/api/admin/agendamento/:id', async (req, res) => {
   try {
     const agendamento = await Agendamento.findByIdAndUpdate(
       req.params.id,
@@ -120,7 +120,7 @@ router.put('/admin/agendamento/:id', async (req, res) => {
 });
 
 // Rota para remover um horário padrão
-router.delete('/admin/horarios-padrao/:horario', async (req, res) => {
+router.delete('/api/admin/horarios-padrao/:horario', async (req, res) => {
   const { horario } = req.params;
   try {
     const horariosPadrao = await HorarioPadrao.findOne();
