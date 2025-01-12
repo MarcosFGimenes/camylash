@@ -6,6 +6,9 @@ const Admin = () => {
   const [horariosPadrao, setHorariosPadrao] = useState([]); // Horários padrão
   const [novoHorario, setNovoHorario] = useState(""); // Input para novo horário padrão
 
+  // URL base da API
+  const API_URL = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     fetchAgendamentos();
     fetchHorariosPadrao();
@@ -14,7 +17,7 @@ const Admin = () => {
   // Buscar agendamentos pendentes
   const fetchAgendamentos = () => {
     axios
-      .get("https://camylash-production.up.railway.app/api/admin/agendamentos")
+      .get(`${API_URL}/api/admin/agendamentos`)
       .then((response) => setAgendamentos(response.data))
       .catch((error) => {
         console.error("Erro ao buscar agendamentos:", error);
@@ -24,7 +27,7 @@ const Admin = () => {
   // Buscar horários padrão
   const fetchHorariosPadrao = () => {
     axios
-      .get("https://camylash-production.up.railway.app/api/admin/horarios-padrao")
+      .get(`${API_URL}/api/admin/horarios-padrao`)
       .then((response) => setHorariosPadrao(response.data.horarios || []))
       .catch((error) => {
         console.error("Erro ao buscar horários padrão:", error);
@@ -37,7 +40,7 @@ const Admin = () => {
       window.confirm("Deseja realmente marcar este agendamento como concluído?")
     ) {
       axios
-        .put(`https://camylash-production.up.railway.app/api/admin/agendamento/${id}`)
+        .put(`${API_URL}/api/admin/agendamento/${id}`)
         .then(() => {
           alert("Agendamento concluído com sucesso!");
           fetchAgendamentos(); // Atualiza a lista
@@ -53,7 +56,7 @@ const Admin = () => {
   const cancelarAgendamento = (id) => {
     if (window.confirm("Deseja realmente cancelar este agendamento?")) {
       axios
-        .delete(`https//camylash-production.up.railway.app/api/admin/agendamento/${id}`)
+        .delete(`${API_URL}/api/admin/agendamento/${id}`)
         .then(() => {
           alert("Agendamento cancelado com sucesso!");
           fetchAgendamentos(); // Atualiza a lista
@@ -74,7 +77,7 @@ const Admin = () => {
 
     const horariosAtualizados = [...horariosPadrao, novoHorario];
     axios
-      .post("https://camylash-production.up.railway.app/api/admin/horarios-padrao", {
+      .post(`${API_URL}/api/admin/horarios-padrao`, {
         horarios: horariosAtualizados,
       })
       .then(() => {
@@ -93,7 +96,7 @@ const Admin = () => {
     if (window.confirm(`Deseja realmente remover o horário ${horario}?`)) {
       const horariosAtualizados = horariosPadrao.filter((h) => h !== horario);
       axios
-        .post("https://camylash-production.up.railway.app/api/admin/horarios-padrao", {
+        .post(`${API_URL}/api/admin/horarios-padrao`, {
           horarios: horariosAtualizados,
         })
         .then(() => {

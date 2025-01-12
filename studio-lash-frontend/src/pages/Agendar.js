@@ -11,15 +11,18 @@ const Agendar = () => {
     horario: "",
   }); // Dados do formulário
 
+  // URL base da API
+  const API_URL = process.env.REACT_APP_API_URL;
+
   // Atualiza os horários disponíveis ao selecionar uma data
   useEffect(() => {
     if (data) {
       axios
-        .get(`https://camylash-production.up.railway.app/api/horarios-disponiveis?data=${data}`)
+        .get(`${API_URL}/api/horarios-disponiveis?data=${data}`)
         .then((response) => setHorarios(response.data))
         .catch((error) => console.error("Erro ao buscar horários:", error));
     }
-  }, [data]);
+  }, [data, API_URL]);
 
   // Submissão do formulário
   const handleSubmit = (e) => {
@@ -45,7 +48,7 @@ const Agendar = () => {
     // Enviar os dados para o backend
     console.log("Enviando dados:", dados); // Log para depuração
     axios
-      .post("https://camylash-production.up.railway.app/api/agendar", dados)
+      .post(`${API_URL}/api/agendar`, dados)
       .then(() => {
         alert("Agendamento realizado com sucesso!");
         // Limpar o formulário após o sucesso
