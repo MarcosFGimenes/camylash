@@ -14,7 +14,7 @@ const Admin = () => {
   // Buscar agendamentos pendentes
   const fetchAgendamentos = () => {
     axios
-      .get("http://localhost:3000/api/admin/agendamentos")
+      .get("camylash-production.up.railway.app/api/admin/agendamentos")
       .then((response) => setAgendamentos(response.data))
       .catch((error) => {
         console.error("Erro ao buscar agendamentos:", error);
@@ -24,7 +24,7 @@ const Admin = () => {
   // Buscar horários padrão
   const fetchHorariosPadrao = () => {
     axios
-      .get("http://localhost:3000/api/admin/horarios-padrao")
+      .get("http://camylash-production.up.railway.app/api/admin/horarios-padrao")
       .then((response) => setHorariosPadrao(response.data.horarios || []))
       .catch((error) => {
         console.error("Erro ao buscar horários padrão:", error);
@@ -37,7 +37,7 @@ const Admin = () => {
       window.confirm("Deseja realmente marcar este agendamento como concluído?")
     ) {
       axios
-        .put(`http://localhost:3000/api/admin/agendamento/${id}`)
+        .put(`http://camylash-production.up.railway.app/api/admin/agendamento/${id}`)
         .then(() => {
           alert("Agendamento concluído com sucesso!");
           fetchAgendamentos(); // Atualiza a lista
@@ -53,7 +53,7 @@ const Admin = () => {
   const cancelarAgendamento = (id) => {
     if (window.confirm("Deseja realmente cancelar este agendamento?")) {
       axios
-        .delete(`http://localhost:3000/api/admin/agendamento/${id}`)
+        .delete(`http://camylash-production.up.railway.app/api/admin/agendamento/${id}`)
         .then(() => {
           alert("Agendamento cancelado com sucesso!");
           fetchAgendamentos(); // Atualiza a lista
@@ -74,7 +74,7 @@ const Admin = () => {
 
     const horariosAtualizados = [...horariosPadrao, novoHorario];
     axios
-      .post("http://localhost:3000/api/admin/horarios-padrao", {
+      .post("http://camylash-production.up.railway.app/api/admin/horarios-padrao", {
         horarios: horariosAtualizados,
       })
       .then(() => {
@@ -93,7 +93,7 @@ const Admin = () => {
     if (window.confirm(`Deseja realmente remover o horário ${horario}?`)) {
       const horariosAtualizados = horariosPadrao.filter((h) => h !== horario);
       axios
-        .post("http://localhost:3000/api/admin/horarios-padrao", {
+        .post("http://camylash-production.up.railway.app/api/admin/horarios-padrao", {
           horarios: horariosAtualizados,
         })
         .then(() => {
