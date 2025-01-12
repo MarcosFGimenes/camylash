@@ -201,4 +201,3 @@ const Admin = () => {
 };
 
 export default Admin;
-s
