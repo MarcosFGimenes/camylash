@@ -14,7 +14,7 @@ const Admin = () => {
   // Buscar agendamentos pendentes
   const fetchAgendamentos = () => {
     axios
-      .get("camylash-production.up.railway.app/api/admin/agendamentos")
+      .get("https://camylash-production.up.railway.app/api/admin/agendamentos")
       .then((response) => setAgendamentos(response.data))
       .catch((error) => {
         console.error("Erro ao buscar agendamentos:", error);
