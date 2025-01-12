@@ -24,12 +24,6 @@ const Navbar = () => {
           >
             Agendar
           </Link>
-          <Link
-            to="/admin"
-            className="text-white text-lg font-medium hover:text-purple-300 transition duration-300"
-          >
-            Admin
-          </Link>
         </div>
       </div>
     </nav>
