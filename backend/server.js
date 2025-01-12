@@ -6,21 +6,21 @@ const agendamentoRoutes = require('./routes/agendamentos');
 
 const app = express();
 
-// Configurações de CORS (Deve ser o primeiro middleware!)
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // Permite todas as origens
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  );
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  if (req.method === 'OPTIONS') {
-    res.sendStatus(200); // Responde às requisições preflight
-  } else {
-    next();
-  }
-});
+// Configurações de CORS
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://camylash.vercel.app'], // Frontend permitido
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+}));
 
+// Middleware para tratar pré-verificações (OPTIONS)
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    return res.status(200).json({});
+  }
+  next();
+});
 
 // Configurações
 app.use(bodyParser.json());
@@ -29,7 +29,9 @@ app.use(bodyParser.json());
 mongoose.connect(
   'mongodb+srv://marcosgimenes:xUC6n9jPOXUXaSh5@camylash.br4fc.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true, useUnifiedTopology: true }
-);
+)
+  .then(() => console.log('Conectado ao MongoDB com sucesso!'))
+  .catch((err) => console.error('Erro ao conectar ao MongoDB:', err));
 
 // Rotas de agendamento
 app.use('/api', agendamentoRoutes);
@@ -40,6 +42,7 @@ app.get('/', (req, res) => {
 });
 
 // Iniciar o servidor
-app.listen(3000, () => {
-  console.log('Servidor rodando em http://localhost:3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
