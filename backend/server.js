@@ -6,14 +6,21 @@ const agendamentoRoutes = require('./routes/agendamentos');
 
 const app = express();
 
-// Configurações de CORS
-app.use(
-  cors({
-    origin: ['http://localhost:3000', 'https://camylash.vercel.app'], // Substitua com a URL do frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
-    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
-  })
-);
+// Configurações de CORS (Deve ser o primeiro middleware!)
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Permite todas as origens
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200); // Responde às requisições preflight
+  } else {
+    next();
+  }
+});
+
 
 // Configurações
 app.use(bodyParser.json());
