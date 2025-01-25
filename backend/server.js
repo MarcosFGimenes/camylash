@@ -9,7 +9,7 @@ const app = express();
 
 // Configurações de CORS
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://camylash.vercel.app', 'http://mongodb.camilygimenes.kinghost.net', 'http://camilydesigner.yex1d.mongodb.net'],
+  origin: ['http://camylash.vercel.app', 'http://mongodb.camilygimenes.kinghost.net', 'http://camilydesigner.yex1d.mongodb.net', 'https://camilygimenes.kinghost.net', 'http://camilygimenes.kinghost.net:21095s'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 });
 
 // Iniciar o servidor
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 21095;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
