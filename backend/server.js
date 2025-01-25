@@ -9,7 +9,7 @@ const app = express();
 
 // Configurações de CORS
 app.use(cors({
-  origin: ['http://camylash.vercel.app', 'http://mongodb.camilygimenes.kinghost.net', 'http://camilydesigner.yex1d.mongodb.net', 'https://camilygimenes.kinghost.net', 'http://camilygimenes.kinghost.net:21095s'],
+  origin: ['http://camylash.vercel.app', 'http://mongodb.camilygimenes.kinghost.net', 'http://camilydesigner.yex1d.mongodb.net', 'https://camilygimenes.kinghost.net', 'http://camilygimenes.kinghost.net:21095'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
